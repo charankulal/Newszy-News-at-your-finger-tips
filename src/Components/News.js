@@ -1,8 +1,20 @@
 import React, { Component } from "react";
 import NewsItem from "./NewsItem";
 import Spinner from "./Spinner";
+import PropTypes from 'prop-types'
+
 
 export class News extends Component {
+  static defaultProps={
+    country:'in',
+    pageSize:9,
+    category:'sports',
+  }
+  static propTypes={
+    name:PropTypes.string,
+    pageSize:PropTypes.number,
+    category:PropTypes.string,
+  }
   articles = [];
 
   constructor() {
@@ -16,7 +28,7 @@ export class News extends Component {
   }
   async componentDidMount() {
     let url =
-      `https://newsapi.org/v2/top-headlines?country=in&apiKey=583f311b5e434228a685f999e9799aaa&${this.state.page}&pageSize=${this.state.size}`;
+      `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=583f311b5e434228a685f999e9799aaa&${this.state.page}&pageSize=${this.state.size}`;
       this.setState({loading:true});
       let data = await fetch(url);
     
@@ -29,9 +41,9 @@ export class News extends Component {
     });
   }
   handleNextClick = async () => {
-    let url = `https://newsapi.org/v2/top-headlines?country=in&apiKey=583f311b5e434228a685f999e9799aaa&page=${
+    let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=583f311b5e434228a685f999e9799aaa&page=${
       this.state.page + 1
-    }&&pageSize=${this.state.size}`;
+    }&pageSize=${this.state.size}`;
     this.setState({loading:true});
     let data = await fetch(url);
     
@@ -44,7 +56,7 @@ export class News extends Component {
     });
   };
   handlePrevClick = async () => {
-    let url = `https://newsapi.org/v2/top-headlines?country=in&apiKey=583f311b5e434228a685f999e9799aaa&page=${
+    let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=583f311b5e434228a685f999e9799aaa&page=${
       this.state.page - 1
     }&pageSize=${this.state.size}`;
     this.setState({loading:true});
@@ -63,25 +75,25 @@ export class News extends Component {
     return (
       <div className="container my-3">
         <center>
-          <h2>NewsZy - Top HeadLines</h2>
+          <h2 style={{margin: "20px"}}>NewsZy - Top HeadLines</h2>
           {this.state.loading && <Spinner/>}
         </center>
         <div className="row" align="center">
-          {! this.state.loading &&this.state.articles.map((element) => {
+          {! this.state.loading &&this.state.articles.map((ele) => {
             return (
               <div className="col-md-4">
                 <NewsItem
-                  key={element.url ? element.url : " "}
-                  title={element.title ? element.title : ""}
+                  key={ele.url ? ele.url : " "}
+                  title={ele.title ? ele.title : ""}
                   description={
-                    element.description ? element.description.slice(0, 85) : ""
+                    ele.description ? ele.description.slice(0, 85) : ""
                   }
                   imageurl={
-                    element.urlToImage
-                      ? element.urlToImage
+                    ele.urlToImage
+                      ? ele.urlToImage
                       : "https://images.cointelegraph.com/images/1200_aHR0cHM6Ly9zMy5jb2ludGVsZWdyYXBoLmNvbS91cGxvYWRzLzIwMjMtMDgvMjNlNzc5OWItMmQ0NS00ODY5LWIxNjQtN2VjZDZiYjVmYWQ5LmpwZw==.jpg"
                   }
-                  newsurl={element.url}
+                  newsurl={ele.url}
                 />
               </div>
             );
