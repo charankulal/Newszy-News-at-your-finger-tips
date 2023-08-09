@@ -85,6 +85,7 @@ export class News extends Component {
                 <NewsItem
                   key={ele.url ? ele.url : " "}
                   title={ele.title ? ele.title : ""}
+                  channel={ele.source.name?ele.source.name:""}
                   description={
                     ele.description ? ele.description.slice(0, 85) : ""
                   }
@@ -93,7 +94,7 @@ export class News extends Component {
                       ? ele.urlToImage
                       : "https://images.cointelegraph.com/images/1200_aHR0cHM6Ly9zMy5jb2ludGVsZWdyYXBoLmNvbS91cGxvYWRzLzIwMjMtMDgvMjNlNzc5OWItMmQ0NS00ODY5LWIxNjQtN2VjZDZiYjVmYWQ5LmpwZw==.jpg"
                   }
-                  newsurl={ele.url}
+                  newsurl={ele.url} author={ele.author?ele.author:"Anonymous"} date={ele.publishedAt.substring(0,10)+" "+ele.publishedAt.substring(12)}
                 />
               </div>
             );
