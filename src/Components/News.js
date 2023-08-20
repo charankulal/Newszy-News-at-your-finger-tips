@@ -1,20 +1,19 @@
 import React, { Component } from "react";
 import NewsItem from "./NewsItem";
 import Spinner from "./Spinner";
-import PropTypes from 'prop-types'
-
+import PropTypes from "prop-types";
 
 export class News extends Component {
-  static defaultProps={
-    country:'in',
-    pageSize:9,
-    category:'sports',
-  }
-  static propTypes={
-    name:PropTypes.string,
-    pageSize:PropTypes.number,
-    category:PropTypes.string,
-  }
+  static defaultProps = {
+    country: "in",
+    pageSize: 9,
+    category: "sports",
+  };
+  static propTypes = {
+    name: PropTypes.string,
+    pageSize: PropTypes.number,
+    category: PropTypes.string,
+  };
   articles = [];
 
   constructor() {
@@ -26,81 +25,68 @@ export class News extends Component {
       size: 9,
     };
   }
-  async componentDidMount() {
 
-    
-    let url =
-      `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=583f311b5e434228a685f999e9799aaa&${this.state.page}&pageSize=${this.state.size}`;
-      this.setState({loading:true});
-      let data = await fetch(url);
-    
+  async updateTheNews(pageNo) {
+    const url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=583f311b5e434228a685f999e9799aaa&page=${this.state.page}&pageSize=${this.state.size}`;
+    this.setState({ loading: true });
+    let data = await fetch(url);
+
     let parsedData = await data.json();
     console.log(parsedData);
     this.setState({
-      loading:false,
+      loading: false,
       articles: parsedData.articles,
       totalArticles: parsedData.totalResults,
     });
   }
+
+  async componentDidMount() {
+    this.updateTheNews();
+  }
   handleNextClick = async () => {
-    let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=583f311b5e434228a685f999e9799aaa&page=${
-      this.state.page + 1
-    }&pageSize=${this.state.size}`;
-    this.setState({loading:true});
-    let data = await fetch(url);
-    
-    let parsedData = await data.json();
-    console.log(parsedData);
-    this.setState({
-      loading:false,
-      page: this.state.page + 1,
-      articles: parsedData.articles,
-    });
+    this.setState({ page: this.state.page + 1 });
+    this.updateTheNews();
   };
   handlePrevClick = async () => {
-    let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=583f311b5e434228a685f999e9799aaa&page=${
-      this.state.page - 1
-    }&pageSize=${this.state.size}`;
-    this.setState({loading:true});
-    let data = await fetch(url);
-    
-    let parsedData = await data.json();
-    console.log(parsedData);
-    this.setState({
-      loading:false,
-      page: this.state.page - 1,
-      articles: parsedData.articles,
-    });
+    this.setState({ page: this.state.page - 1 });
+    this.updateTheNews();
   };
 
   render() {
     return (
       <div className="container my-3">
         <center>
-          <h2 style={{margin: "20px"}}>NewsZy - Top HeadLines</h2>
-          {this.state.loading && <Spinner/>}
+          <h2 style={{ margin: "20px" }}>NewsZy - Top HeadLines</h2>
+          {this.state.loading && <Spinner />}
         </center>
         <div className="row" align="center">
-          {! this.state.loading &&this.state.articles.map((ele) => {
-            return (
-              <div className="col-md-4">
-                <NewsItem
-                  key={ele.url ? ele.url :""}
-                  title={ele.title ? ele.title : ""}
-                  channel={ele.source.name?ele.source.name:""}
-                  description={
-                    ele.description ? ele.description.slice(0, 85) : ""
-                  }
-                  imageurl={
-                    ele.urlToImage
-                      ? ele.urlToImage
-                      : "https://c1.wallpaperflare.com/preview/251/931/705/not-found-404-error-file-not-found-404-file-not-found-thumbnail.jpg"
-                  }
-                  newsurl={ele.url} author={ele.author?ele.author:"Anonymous"} date={ele.publishedAt.substring(0,10)+" "+ele.publishedAt.substring(12)}
-                />
-              </div>
-            );
-          })}
+          {!this.state.loading &&
+            this.state.articles.map((ele) => {
+              return (
+                <div className="col-md-4">
+                  <NewsItem
+                    key={ele.url ? ele.url : ""}
+                    title={ele.title ? ele.title : ""}
+                    channel={ele.source.name ? ele.source.name : ""}
+                    description={
+                      ele.description ? ele.description.slice(0, 85) : ""
+                    }
+                    imageurl={
+                      ele.urlToImage
+                        ? ele.urlToImage
+                        : "https://c1.wallpaperflare.com/preview/251/931/705/not-found-404-error-file-not-found-404-file-not-found-thumbnail.jpg"
+                    }
+                    newsurl={ele.url}
+                    author={ele.author ? ele.author : "Anonymous"}
+                    date={
+                      ele.publishedAt.substring(0, 10) +
+                      " " +
+                      ele.publishedAt.substring(12)
+                    }
+                  />
+                </div>
+              );
+            })}
         </div>
         <div className="d-flex justify-content-between">
           <button
@@ -113,7 +99,8 @@ export class News extends Component {
           </button>
           <button
             disabled={
-              this.state.page + 1 > Math.ceil(this.state.totalArticles / this.state.size)
+              this.state.page + 1 >
+              Math.ceil(this.state.totalArticles / this.state.size)
             }
             type="button"
             className="btn btn-dark"
