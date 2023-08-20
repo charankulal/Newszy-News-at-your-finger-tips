@@ -85,7 +85,7 @@ export class News extends Component {
             return (
               <div className="col-md-4">
                 <NewsItem
-                  key={ele.url ? ele.url : " "}
+                  key={ele.url ? ele.url :""}
                   title={ele.title ? ele.title : ""}
                   channel={ele.source.name?ele.source.name:""}
                   description={
@@ -94,7 +94,7 @@ export class News extends Component {
                   imageurl={
                     ele.urlToImage
                       ? ele.urlToImage
-                      : "https://images.cointelegraph.com/images/1200_aHR0cHM6Ly9zMy5jb2ludGVsZWdyYXBoLmNvbS91cGxvYWRzLzIwMjMtMDgvMjNlNzc5OWItMmQ0NS00ODY5LWIxNjQtN2VjZDZiYjVmYWQ5LmpwZw==.jpg"
+                      : "https://c1.wallpaperflare.com/preview/251/931/705/not-found-404-error-file-not-found-404-file-not-found-thumbnail.jpg"
                   }
                   newsurl={ele.url} author={ele.author?ele.author:"Anonymous"} date={ele.publishedAt.substring(0,10)+" "+ele.publishedAt.substring(12)}
                 />
