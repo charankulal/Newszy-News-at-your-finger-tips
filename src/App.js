@@ -22,7 +22,7 @@ export default class App extends Component {
                   key="general"
                   pageSize={this.pageSize}
                   country="in"
-                  category="general"
+                  category="General"
                 />
               }
             ></Route>
@@ -34,7 +34,7 @@ export default class App extends Component {
                   key="general"
                   pageSize={this.pageSize}
                   country="in"
-                  category="general"
+                  category="General"
                 />
               }
             ></Route>
@@ -46,7 +46,7 @@ export default class App extends Component {
                   key="business"
                   pageSize={this.pageSize}
                   country="in"
-                  category="business"
+                  category="Business"
                 />
               }
             ></Route>
@@ -58,7 +58,7 @@ export default class App extends Component {
                   key="entertainment"
                   pageSize={this.pageSize}
                   country="in"
-                  category="entertainment"
+                  category="Entertainment"
                 />
               }
             ></Route>
@@ -70,7 +70,7 @@ export default class App extends Component {
                   key="health"
                   pageSize={this.pageSize}
                   country="in"
-                  category="health"
+                  category="Health"
                 />
               }
             ></Route>
@@ -82,7 +82,7 @@ export default class App extends Component {
                   key="science"
                   pageSize={this.pageSize}
                   country="in"
-                  category="science"
+                  category="Science"
                 />
               }
             ></Route>
@@ -94,7 +94,7 @@ export default class App extends Component {
                   key="sports"
                   pageSize={this.pageSize}
                   country="in"
-                  category="sports"
+                  category="Sports"
                 />
               }
             ></Route>
@@ -106,7 +106,7 @@ export default class App extends Component {
                   key="technology"
                   pageSize={this.pageSize}
                   country="in"
-                  category="technology"
+                  category="Technology"
                 />
               }
             ></Route>
