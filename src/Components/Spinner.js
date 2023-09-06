@@ -4,7 +4,7 @@ import Loading from './Loading.svg'
 export class Spinner extends Component {
   render() {
     return (
-      <div className="text-center">
+      <div className="text-center m-4">
         <img width="true"  src={Loading} alt="Loading"  />
       </div>
     )
