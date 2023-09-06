@@ -57,7 +57,7 @@ export class News extends Component {
     return (
       <div className="container my-3">
         <center>
-          <h2 style={{ margin: "20px" }}>NewsZy - Top HeadLines</h2>
+          <h2 style={{ margin: "20px" }}>NewsZy - Top HeadLines from {this.props.category}</h2>
           {this.state.loading && <Spinner />}
         </center>
         <div className="row" align="center">
