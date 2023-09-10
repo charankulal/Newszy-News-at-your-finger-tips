@@ -58,7 +58,7 @@ const News=(props)=> {
       <div className="container my-3">
         <center>
           <h2 style={{ margin: "20px" }}>
-            {`${props.category}==="General" `? `NewsZy - Top HeadLines` : `NewsZy - Top ${props.category} HeadLines`}
+            {props.category === 'General' ? `NewsZy - Top HeadLines` : `NewsZy - Top ${props.category} HeadLines`}
           </h2>
           {loading && <Spinner />}
         </center>
