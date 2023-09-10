@@ -1,10 +1,10 @@
-import React, { Component } from "react";
+import React from "react";
 import {
   Link, //Link is used to navigate between pages in react router
 } from "react-router-dom";
 
-export class Navbar extends Component {
-  render() {
+const Navbar=()=> {
+  
     return (
       <div className="sticky-top">
         <nav className="navbar navbar-expand-lg bg-dark mb-2" data-bs-theme="dark">
@@ -33,8 +33,6 @@ export class Navbar extends Component {
                     Home
                   </Link>
                 </li>
-                {/* <li className="nav-item"><Link className="nav-link" to="/about">About</Link></li> */}
-
                 <li className="nav-item">
                   <Link className="nav-link" to="/technology">
                     Technology
@@ -76,7 +74,7 @@ export class Navbar extends Component {
         </nav>
       </div>
     );
-  }
+  
 }
 
 export default Navbar;

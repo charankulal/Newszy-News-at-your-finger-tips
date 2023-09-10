@@ -15,3 +15,18 @@ The series of events that happen from the mounting of a React component to its u
 - `componentWillUnmount()` life cycle method is called just before the component is unmounted as destroyed. Usually used to perform cleanups. 
 
 ![](https://miro.medium.com/v2/resize:fit:740/1*6fpdTXUVt1sQuLA9KthEQQ.png)
+
+## React Hooks:
+
+Features of class based components in function based components.
+
+It allows you to use state and other react features without writing a class
+
+Hooks arethe functions which hook into react state and life cycle from function components.
+
+### Commoly used react hooks
+
+- useState
+- useEffect
+- useContext
+- useRef
